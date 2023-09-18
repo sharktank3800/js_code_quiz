@@ -52,3 +52,11 @@ button{
 .hide{
     display: none;
 }
+
+.clicked-alert{
+    color:rgba(126, 34, 212, 0.808);
+    font-weight: 600;
+    position: absolute;
+    bottom: 20%;
+    left: 45%;
+}
