@@ -20,10 +20,15 @@ var question;
 
 var intervalID;
 
+
+
+
+
 function displayQuestions(){
 
     question = questions[currentQuestionIndex];
-    questionH1.innerHTML = question.Text;
+    questionH1.innerHTML = question.text;
+
     options.innerHTML = "";
 
     question.choices.forEach(function(choice){
@@ -33,18 +38,31 @@ function displayQuestions(){
 }
 
 
-function AnswerCheck(){
+
+function showHighscore(){
+
+    localStorage.setItem("score", time);
+    window.location = "./highScores.html";
+}
 
 
-        options.addEventListener("click", function(event){
+
+function AnswerCheck(event){
+
+
+            var choiceButtons = document.querySelectorAll(".choice")
+            choiceButtons.forEach(function(button){
+                button.addEventListener("click",AnswerCheck);
+            });
+            
 
             var clickedChoice = event.target.textContent;
             var currentQuestion = question;
 
             if (clickedChoice === currentQuestion.correctAnswer) {
-                alert.innerHTML = "Correct";
+                alert.innerHTML = "Correct!";
             } else {
-                alert.innerHTML = "wrong";
+                alert.innerHTML = "wrong!";
                 time -= 10;
             }
 
@@ -55,15 +73,16 @@ function AnswerCheck(){
             } else {
                 clearInterval(intervalID);
                 timer.innerHTML = "Timer: 0";
+                showHighscore();
                 alert.innerHTML = "Quiz Finished!";
             }
-        });
-        
 
 
 
 
 };
+
+
 
 
 
