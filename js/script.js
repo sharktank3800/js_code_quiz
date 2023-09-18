@@ -6,33 +6,64 @@ var questionH1 = document.querySelector("h1");
 
 var div = document.querySelector("div");
 
-var choicelist = document.querySelector(".options");
+var options = document.querySelector(".options");
+
+var alert = document.querySelector(".clicked-alert");
 
 var start = document.querySelector("#StartBtn");
 
 var time =  75;
 
-var curentQuestionIndex = 0;
+var currentQuestionIndex = 0;
 
 var question;
 
-
+var intervalID;
 
 function displayQuestions(){
-     
-    question = questions[curentQuestionIndex];
+
+    question = questions[currentQuestionIndex];
     questionH1.innerHTML = question.Text;
+    options.innerHTML = "";
 
     question.choices.forEach(function(choice){
-        choicelist.insertAdjacentHTML("beforeend", "<button>" + choice + "</button>");
-    })
+        options.insertAdjacentHTML("beforeend", "<button>" + choice + "</button>");
+    });
 
 }
 
 
 function AnswerCheck(){
 
-}
+
+        options.addEventListener("click", function(event){
+
+            var clickedChoice = event.target.textContent;
+            var currentQuestion = question;
+
+            if (clickedChoice === currentQuestion.correctAnswer) {
+                alert.innerHTML = "Correct";
+            } else {
+                alert.innerHTML = "wrong";
+                time -= 10;
+            }
+
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < questions.length){
+                displayQuestions();
+            } else {
+                clearInterval(intervalID);
+                timer.innerHTML = "Timer: 0";
+                alert.innerHTML = "Quiz Finished!";
+            }
+        });
+        
+
+
+
+
+};
 
 
 
@@ -46,14 +77,21 @@ function startQuiz(){
     displayQuestions();
 
 
-    var intervalID = setInterval(function(){
-        time--
+      intervalID = setInterval(function(){
+        time--;
+        timer.innerHTML = "Timer:"+ time;
 
-    })
+        if (time <= 0) {
+            clearInterval(intervalID);
+            timer.innerHTML = "Timer: 0";
+            alert.innerHTML = "Times up!";
+        }
+
+    }, 1000)
+
+};
 
 
-
-
-}
 
 start.addEventListener("click", startQuiz);
+options.addEventListener("click", AnswerCheck);
