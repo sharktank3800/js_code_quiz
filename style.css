@@ -11,7 +11,7 @@ body{
 header {
     display: flex;
     justify-content: space-around;
-    padding: 45px ;
+    padding: 55px ;
 }
 
 a{
@@ -23,5 +23,29 @@ a{
 span{
     font-weight: 500;
     font-size: large;
+}
+
+.main{
+    display: flex;
+    text-align: center;
+    font-size: larger;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1.5;
+    padding: 70px;
+    margin: 50px;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    color: rgb(243, 230, 214);
+    background-color: rgba(126, 34, 212, 0.808);
+    padding: 10px 40px;
+    margin: 40px;
+    border-radius: 25px;
 }
 
