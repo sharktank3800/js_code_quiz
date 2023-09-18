@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: rgb(243, 230, 214);
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    padding: 45px ;
+}
+
+a{
+    text-decoration: none;
+    color: rgba(126, 34, 212, 0.808);
+    font-weight: 700;
+}
+
+span{
+    font-weight: 500;
+    font-size: large;
+}
+
